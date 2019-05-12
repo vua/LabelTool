@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>$9
+<annotation>$9
+	<folder>VOC2007</folder>$9
+	<filename>$5</filename>$9
+	<size>$9
+		<width>$7</width>$9
+		<height>$8</height>$9
+		<depth>3</depth>$9
+	</size>$9
+	/*<object>$9
+		<name>$4</name>$9
+		<pose>Unspecified</pose>$9
+		<truncated>0</truncated>$9
+		<difficult>0</difficult>$9
+		<bndbox>$9
+			<xmin>$0</xmin>$9
+			<ymin>$1</ymin>$9
+			<xmax>$2</xmax>$9
+			<ymax>$3</ymax>$9
+		</bndbox>$9
+	</object>$9*/
+</annotation>$9
