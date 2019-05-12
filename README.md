@@ -60,7 +60,7 @@
     Name:01.jpg
     Size( 450 300 )
     Object:
-    Item:bird Loc{ 358 33 423 99 } 
-    Item:cat Loc{ 28 120 335 280 }
+      Item:bird Loc{ 358 33 423 99 } 
+      Item:cat Loc{ 28 120 335 280 }
     ```
     
