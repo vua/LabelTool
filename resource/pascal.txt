@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>$9
+<?xml version="1.0" encoding="UTF-8"?>$9
 <annotation>$9
 	<folder>VOC2007</folder>$9
 	<filename>$5</filename>$9
