@@ -26,7 +26,26 @@ import java.util.List;
 
 
 public class ButtonEvent {
-    public static void clickFileButton(String path){
+    static final boolean isWinOs;
+
+    static {
+        if (File.separator.equals("\\"))
+            isWinOs = true;
+        else
+            isWinOs = false;
+    }
+    public static void goBack() throws IOException {
+        List<double[]> locs = App.locs.get(App.index);
+        if(locs.size()>0) {
+            locs.remove(locs.size() - 1);
+
+            UiUtils.openImage(App.path);
+            UiUtils.repaint();
+        }
+
+    }
+
+    public static void clickFileButton(String path) {
         try {
             UiUtils.openImage(path);
             UiUtils.repaint();
@@ -35,31 +54,35 @@ public class ButtonEvent {
         }
 
     }
+
     public static void clickOpenDirButton(VBox vBox) {
         vBox.getChildren().clear();
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        File dir =directoryChooser.showDialog(new Stage());
-        if(dir!=null) {
-            App.allimagepaths=new ArrayList<>();
+        File dir = directoryChooser.showDialog(new Stage());
+        if (dir != null) {
+            App.allimagepaths = new ArrayList<>();
             for (File file : dir.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File pathname) {
-                    return pathname.getName().endsWith(".jpg")||
-                            pathname.getName().endsWith(".png")||
-                            pathname.getName().endsWith(".bmp")||
+                    return pathname.getName().endsWith(".jpg") ||
+                            pathname.getName().endsWith(".png") ||
+                            pathname.getName().endsWith(".bmp") ||
                             pathname.getName().endsWith(".gif");
                 }
             })) {
-                String path=file.getAbsolutePath();
-                Button button = new Button(path);
+                String path = file.getAbsolutePath();
+                String name = file.getName();
+                Button button = new Button(name);
 
-                if(File.separator.equals("\\"))
+                if (isWinOs)
                     App.allimagepaths.add(path.replaceAll("\\\\", "/"));
-                button.setOnMouseEntered((event)->{
+                else
+                    App.allimagepaths.add(path);
+                button.setOnMouseEntered((event) -> {
                     LabelEvent.hover(button);
-                    button.setOnMouseClicked((event1 ->{
-                        App.path=path;
+                    button.setOnMouseClicked((event1 -> {
+                        App.path = path;
                         clickFileButton(path);
                     }));
                 });
@@ -73,7 +96,7 @@ public class ButtonEvent {
 
                 vBox.getChildren().add(button);
             }
-            String path=dir.listFiles()[0].getAbsolutePath();
+            String path = dir.listFiles()[0].getAbsolutePath();
             try {
                 UiUtils.openImage(path);
             } catch (IOException e) {
@@ -82,66 +105,73 @@ public class ButtonEvent {
 
         }
     }
-    public static void confirmLabel(TextField labelvalue, Stage stage){
 
-        String label=labelvalue.getText().trim();
-        if(!label.equals("")){
+    public static void confirmLabel(TextField labelvalue, Stage stage) {
+
+        String label = labelvalue.getText().trim();
+        if (!label.equals("")) {
             App.labels.get(App.index).add(label);
             UiUtils.addItemForSet(label);
             stage.close();
             UiUtils.repaint();
         }
     }
-    public static void nextImage(){
 
-        int idx=App.allimagepaths.indexOf(App.path);
-        if(idx++<App.allimagepaths.size()-1){
-            App.path=App.allimagepaths.get(idx);
-            UiUtils.repaint();
-        }
+    public static void nextImage() {
 
-    }
-    public static void prevImage(){
-        int idx=App.allimagepaths.indexOf(App.path);
-        if(--idx>=0){
-            App.path=App.allimagepaths.get(idx);
+        int idx = App.allimagepaths.indexOf(App.path);
+        if (idx++ < App.allimagepaths.size() - 1) {
+            App.path = App.allimagepaths.get(idx);
             UiUtils.repaint();
         }
     }
-    public static void selectSaveDir(){
+
+    public static void prevImage() {
+        int idx = App.allimagepaths.indexOf(App.path);
+        if (--idx >= 0) {
+            App.path = App.allimagepaths.get(idx);
+            UiUtils.repaint();
+        }
+    }
+
+    public static void selectSaveDir() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        File dir =directoryChooser.showDialog(new Stage());
-        if(dir!=null) {
-            App.save_path=dir.getAbsolutePath();
+        File dir = directoryChooser.showDialog(new Stage());
+        if (dir != null) {
+            App.save_path = dir.getAbsolutePath();
         }
     }
-    public static void save2LabelFile(String ...args){
 
-        for(int i=1;i<App.paths.size();i++){
-            List<double[]> locs=App.locs.get(i);
-            int l=locs.size();
-            if(l==0)
+    public static void save2LabelFile(String... args) {
+        App.final0_3 = new ArrayList<>();
+        App.final4 = new ArrayList<>();
+        App.final5_8 = new ArrayList<>();
+
+        for (int i = 1; i < App.paths.size(); i++) {
+            List<double[]> locs = App.locs.get(i);
+            int l = locs.size();
+            if (l == 0)
                 continue;
-            ArrayList<String> item1=new ArrayList<>();
-            ArrayList<int[]> item=new ArrayList<>();
-            double ratio=App.ratios.get(i);
-            int[] xmin=new int[l];
-            int[] ymin=new int[l];
-            int[] xmax=new int[l];
-            int[] ymax=new int[l];
-            for(int j=0;j<l;j++){
-                xmin[j]=(int)Math.floor(locs.get(j)[0]*ratio);
-                ymin[j]=(int)Math.floor(locs.get(j)[1]*ratio);
-                xmax[j]=(int)Math.floor(locs.get(j)[2]*ratio);
-                ymax[j]=(int)Math.floor(locs.get(j)[3]*ratio);
+            ArrayList<String> item1 = new ArrayList<>();
+            ArrayList<int[]> item = new ArrayList<>();
+            double ratio = App.ratios.get(i);
+            int[] xmin = new int[l];
+            int[] ymin = new int[l];
+            int[] xmax = new int[l];
+            int[] ymax = new int[l];
+            for (int j = 0; j < l; j++) {
+                xmin[j] = (int) Math.floor(locs.get(j)[0] * ratio);
+                ymin[j] = (int) Math.floor(locs.get(j)[1] * ratio);
+                xmax[j] = (int) Math.floor(locs.get(j)[2] * ratio);
+                ymax[j] = (int) Math.floor(locs.get(j)[3] * ratio);
             }
-            String absolutePath=App.paths.get(i);
+            String absolutePath = App.paths.get(i);
 
-            String fileName=absolutePath.substring(absolutePath.lastIndexOf("/")+1);
+            String fileName = absolutePath.substring(absolutePath.lastIndexOf("/") + 1);
 
 
-            String width=String.valueOf(App.widths.get(i));
-            String height=String.valueOf(App.heights.get(i));
+            String width = String.valueOf(App.widths.get(i));
+            String height = String.valueOf(App.heights.get(i));
             item.add(xmin);//$0
             item.add(ymin);//$1
             item.add(xmax);//$2
@@ -151,28 +181,25 @@ public class ButtonEvent {
             item1.add(absolutePath);//$6
             item1.add(width);//$7
             item1.add(height);//$8
-
             App.final0_3.add(item);
             App.final4.add(App.labels.get(i));
             App.final5_8.add(item1);
         }
-        Stage stage=SaveProcessStage.createLabelSelectStage(App.final4.size(),args);
+        Stage stage = SaveProcessStage.createLabelSelectStage(App.final4.size(), args);
+
         try {
             CoreUtils.parseFileTool(args[0]);
-            CoreUtils.writeFileTool(args[1],args[2]);
-        } catch (IOException e) {
+            CoreUtils.writeFileTool(args[1], args[2]);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        EventHandler<ActionEvent> eventHandler= e -> {
+        EventHandler<ActionEvent> eventHandler = e -> {
             stage.close();
         };
-        App.final0_3=new ArrayList<>();
-        App.final4=new ArrayList<>();
-        App.final5_8=new ArrayList<>();
-        Timeline animation=new Timeline(new KeyFrame(Duration.millis(3000),eventHandler));
+
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(3000), eventHandler));
         animation.setCycleCount(1);
         animation.play();
-
 
 
     }
