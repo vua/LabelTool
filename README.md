@@ -1,12 +1,24 @@
 # LabelTool
 ## Target Detection Label Tool (Label Template can be customized)
 
-![logo](https://github.com/vua/LabelTool/blob/master/resource/sample%20map/map2.png)
+![logo](https://github.com/vua/LabelTool/blob/master/Ui.png)
+
+### How to use?
+  * #### mvn package
+  
+    ```
+    git clone https://github.com/vua/LabelTool.git
+    cd LabelTool
+    mvn clean package
+    cd target
+    java -jar LabelTool-v3.0.jar 
+    ```
+  
 ### 1. Label Template
   * #### General Template
     We have provided two general templates, `pascal` and `coco`,which you can select from the radio box.
   * #### Custom Template
-    >You can define your own template in `resource/diy.txt` using `ten variables`, `a repeat character`, and strings
+    >You can define your own template in `diy.txt` using `ten variables`, `a repeat character`, and strings
     [variables List]:
     ```
     $0:xmin
@@ -63,4 +75,11 @@
       Item:bird Loc{ 358 33 423 99 } 
       Item:cat Loc{ 28 120 335 280 }
     ```
-    
+### 2. Preservation method
+  * #### Spearate 
+  * #### Unified
+  
+### 3. File format
+  * #### .xml
+  * #### .txt
+
