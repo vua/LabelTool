@@ -1,5 +1,0 @@
-Path:$6$9
-Name:$5$9
-Size( $7 $8 )$9
-Object:$9
-/*  Item:$4 Loc{ $0 $1 $2 $3 }$9*/
