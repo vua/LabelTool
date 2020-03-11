@@ -1,0 +1,27 @@
+Path:C:/Users/53121/Desktop/IMAGE/10.jpg
+Name:10.jpg
+Size( 2424 2820 )
+Object:
+  Item:﻿person Loc{ 675 451 1198 1146 }
+Path:C:/Users/53121/Desktop/IMAGE/11#.jpg
+Name:11#.jpg
+Size( 2424 2820 )
+Object:
+  Item:bird Loc{ 493 629 1283 1272 }
+  Item:﻿person Loc{ 1201 1225 1903 1854 }
+Path:C:/Users/53121/Desktop/IMAGE/14.jpg
+Name:14.jpg
+Size( 2064 1728 )
+Object:
+  Item:﻿person Loc{ 647 683 1521 1334 }
+Path:C:/Users/53121/Desktop/IMAGE/13.jpg
+Name:13.jpg
+Size( 2296 2288 )
+Object:
+  Item:﻿person Loc{ 684 706 1473 1341 }
+Path:C:/Users/53121/Desktop/IMAGE/12.jpg
+Name:12.jpg
+Size( 2272 1908 )
+Object:
+  Item:﻿person Loc{ 604 608 1488 1305 }
+  Item:﻿person Loc{ 1061 1123 1621 1698 }

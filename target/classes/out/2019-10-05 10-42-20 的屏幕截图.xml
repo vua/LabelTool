@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<annotation>
+	<folder>VOC2007</folder>
+	<filename>2019-10-05 10-42-20 的屏幕截图.png</filename>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<object>
+		<name>﻿person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>124</xmin>
+			<ymin>233</ymin>
+			<xmax>950</xmax>
+			<ymax>665</ymax>
+		</bndbox>
+	</object>
+</annotation>

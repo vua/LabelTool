@@ -1,0 +1,4 @@
+Path:C:/Users/53121/Desktop/IMAGE/01.jpg
+Name:01.jpg
+Object:
+  Item:﻿person Loc{ 613 1005 1324 1640 } Size{ 1836 2976 }
