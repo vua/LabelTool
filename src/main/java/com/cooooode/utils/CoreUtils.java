@@ -4,6 +4,7 @@ import com.cooooode.ui.App;
 
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
@@ -187,9 +188,12 @@ public class CoreUtils {
         try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(
                         new FileOutputStream(new File(App.save_path + "/" + name), append)
-                        , "utf-8"))
+                       ,StandardCharsets.UTF_8 ))
         ) {
-            writer.write(sb.toString());
+            String str=sb.toString();
+            byte[] bytes=str.getBytes("UTF-8");
+            str=new String(bytes,6,bytes.length-6);
+            writer.write(str);
         }
 
     }
